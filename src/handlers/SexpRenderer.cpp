@@ -1,4 +1,4 @@
-#include "sexprenderer.hpp"
+#include "SexpRenderer.hpp"
 
 #include <QWebFrame>
 #include <QWebElement>
@@ -6,8 +6,9 @@
 
 #include <iostream>
 
-SexpRenderer::SexpRenderer(const QUrl &url)
+SexpRenderer::SexpRenderer(QNetworkAccessManager* manager, const QUrl &url)
 {
+    page.setNetworkAccessManager(manager);
     page.mainFrame()->load(url);
     connect(&page, SIGNAL(loadFinished(bool)),
             this, SLOT(render()));

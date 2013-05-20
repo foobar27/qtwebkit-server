@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QNetworkAccessManager>
 #include <QWebPage>
 
 class Thumbnailer : public QObject
@@ -7,7 +8,7 @@ class Thumbnailer : public QObject
     Q_OBJECT
 
 public:
-    Thumbnailer(const QUrl &url);
+    Thumbnailer(QNetworkAccessManager* manager, const QUrl &url);
 
 signals:
     void finished();

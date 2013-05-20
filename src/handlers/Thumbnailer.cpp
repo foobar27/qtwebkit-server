@@ -1,11 +1,12 @@
-#include "thumbnailer.hpp"
+#include "Thumbnailer.hpp"
 
 #include <QWebFrame>
 #include <QPainter>
 #include <QImage>
 
-Thumbnailer::Thumbnailer(const QUrl &url)
+Thumbnailer::Thumbnailer(QNetworkAccessManager *manager, const QUrl &url)
 {
+    page.setNetworkAccessManager(manager);
     page.mainFrame()->load(url);
     connect(&page, SIGNAL(loadFinished(bool)),
             this, SLOT(render()));
