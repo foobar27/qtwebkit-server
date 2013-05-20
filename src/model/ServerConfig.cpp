@@ -6,15 +6,15 @@
 
 #include <stdexcept>
 
-#define ENTITY_NAME "ServerConfig"
-#define FIELD_NETWORK_TYPE "networkType"
+static const QString entity_name = "ServerConfig";
+static const QString network_type_field = "networkType";
 
 ServerConfig::NetworkType deserializeNetworkType(const QString& name)
 {
     if (name == "disabled") return ServerConfig::NetworkType::disabled;
     if (name == "tunneled") return ServerConfig::NetworkType::tunneled;
     if (name == "enabled") return ServerConfig::NetworkType::enabled;
-    throw InvalidFieldException(ENTITY_NAME, FIELD_NETWORK_TYPE);
+    throw InvalidFieldException(entity_name, network_type_field);
 }
 
 QString serializeNetworkType(ServerConfig::NetworkType networkType)
@@ -39,20 +39,20 @@ ServerConfig::ServerConfig(const QJsonValue& value)
     if (!value.isUndefined()) // else: take default values
     {
         if (!value.isObject())
-            throw new InvalidFieldException(ENTITY_NAME, "");
+            throw new InvalidFieldException(entity_name, "");
         QJsonObject o = value.toObject();
-        QJsonValue networkType = o[FIELD_NETWORK_TYPE];
+        QJsonValue networkType = o[network_type_field];
         if (networkType.isString())
             _networkType = deserializeNetworkType(networkType.toString());
         else
-            throw InvalidFieldException(ENTITY_NAME, FIELD_NETWORK_TYPE);
+            throw InvalidFieldException(entity_name, network_type_field);
     }
 }
 
 QJsonValue ServerConfig::toJsonValue() const
 {
     QJsonObject result;
-    result[FIELD_NETWORK_TYPE] = QJsonValue(serializeNetworkType(_networkType));
+    result[network_type_field] = QJsonValue(serializeNetworkType(_networkType));
     return result;
 }
 

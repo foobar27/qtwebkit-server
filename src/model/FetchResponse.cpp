@@ -3,9 +3,9 @@
 
 #include <QNetworkReply>
 
-#define UNKNOWN_ERROR_PREFIX "unknown error: "
-#define ENTITY_NAME "FetchResponse"
-#define FIELD_NETWORK_ERROR "networkError"
+static const QString unknown_error_prefix = "unknown error: ";
+static const QString entity_name = "FetchResponse";
+static const QString network_error_field = "networkError";
 
 QString serializeNetworkError(QNetworkReply::NetworkError error)
 {
@@ -61,8 +61,7 @@ QString serializeNetworkError(QNetworkReply::NetworkError error)
     case QNetworkReply::NetworkError::ProtocolFailure:
         return "ProtocolFailure";
     default:
-        return UNKNOWN_ERROR_PREFIX + error;
-        break;
+        return QString("%s%d").arg(unknown_error_prefix).arg(error);
     }
 }
 
@@ -93,11 +92,11 @@ QNetworkReply::NetworkError deserializeNetworkError(const QString& s)
     if (s == "UnknownProxyError") return QNetworkReply::NetworkError::UnknownProxyError;
     if (s == "UnknownContentError") return QNetworkReply::NetworkError::UnknownContentError;
     if (s == "ProtocolFailure") return QNetworkReply::NetworkError::ProtocolFailure;
-    if (s.startsWith(UNKNOWN_ERROR_PREFIX))
+    if (s.startsWith(unknown_error_prefix))
     {
-        return static_cast<QNetworkReply::NetworkError>(s.mid(sizeof(UNKNOWN_ERROR_PREFIX)).toInt());
+        return static_cast<QNetworkReply::NetworkError>(s.mid(sizeof(unknown_error_prefix)).toInt());
     }
-    throw InvalidFieldException(ENTITY_NAME, FIELD_NETWORK_ERROR);
+    throw InvalidFieldException(entity_name, network_error_field);
 }
 
 QJsonObject serializeAttributes(const QMap<QNetworkRequest::Attribute, QVariant>& attributes)
