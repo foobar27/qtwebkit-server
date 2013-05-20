@@ -16,6 +16,9 @@ set(SRC_LIST
     "model/ServerConfig.hpp"
     "model/ServerConfig.cpp"
 
+    "network/TunnelNetworkAccessManager.hpp"
+    "network/TunnelNetworkAccessManager.cpp"
+
     "handlers/Thumbnailer.hpp"
     "handlers/Thumbnailer.cpp"
     "handlers/SexpRenderer.hpp"

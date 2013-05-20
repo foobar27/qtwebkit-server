@@ -1,5 +1,6 @@
 #include "TunnelNetworkAccessManager.hpp"
 
-TunnelNetworkAccessManager::TunnelNetworkAccessManager()
+QNetworkReply * TunnelNetworkAccessManager::sendCustomRequest(const QNetworkRequest & request, const QByteArray & verb, QIODevice * data)
 {
+    // TODO
 }
