@@ -5,7 +5,7 @@
 
 static const QString unknown_error_prefix = "unknown error: ";
 static const QString entity_name = "FetchResponse";
-static const QString network_error_field = "networkError";
+static const QString network_error_field = "network_error";
 
 QString serializeNetworkError(QNetworkReply::NetworkError error)
 {

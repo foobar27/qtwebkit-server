@@ -7,7 +7,7 @@
 #include <stdexcept>
 
 static const QString entity_name = "ServerConfig";
-static const QString network_type_field = "networkType";
+static const QString network_type_field = "network_type";
 
 ServerConfig::NetworkType deserializeNetworkType(const QString& name)
 {

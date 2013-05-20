@@ -5,11 +5,11 @@
 #include <QJsonArray>
 
 static const QString entity_name = "RequestPacket";
-static const QString server_config_field = "serverConfig";
-static const QString request_parameters_field = "requestParameters";
-static const QString protocol_version_field = "protocolVersion";
-static const QString request_type_field = "requestType";
-static const QString initial_fetches_field = "initialFetches";
+static const QString server_config_field = "server_config";
+static const QString request_parameters_field = "request_parameters";
+static const QString protocol_version_field = "protocol_version";
+static const QString request_type_field = "request_type";
+static const QString initial_fetches_field = "initial_fetches";
 static const QString request_field = "request";
 static const QString response_field = "response";
 
