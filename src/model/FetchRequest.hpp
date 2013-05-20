@@ -5,13 +5,12 @@
 
 class FetchRequest
 {
-private:
-    int _fetchId;
-    // TODO http request
 public:
     FetchRequest(const QJsonObject& o);
     QJsonObject toJsonObject() const;
 
-
+private:
+    int _fetchId;
+    // TODO http request
 
 };

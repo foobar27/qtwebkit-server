@@ -11,13 +11,6 @@
 
 class RequestPacket
 {
-private:
-    int _protocolVersion;
-    ServerConfig _serverConfig;
-    QString _requestType;
-    QJsonValue _requestParameters;
-    QList<QPair<FetchRequest, FetchResponse>> _initialFetches;
-
 public:
     RequestPacket(const QJsonObject &object);
 
@@ -28,5 +21,12 @@ public:
     const QList<QPair<FetchRequest, FetchResponse>>& initialFetches() const;
 
     QJsonObject toJsonObject() const;
+
+private:
+    int _protocolVersion;
+    ServerConfig _serverConfig;
+    QString _requestType;
+    QJsonValue _requestParameters;
+    QList<QPair<FetchRequest, FetchResponse>> _initialFetches;
 
 };
